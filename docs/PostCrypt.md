@@ -4,91 +4,52 @@ A secure Instant Messaging (IM) implementation between a client and server.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the PostCrypt up and running on your local machine for development and/or testing purposes. 
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+- [JDK 1.4, Standard Edition](http://java.sun.com/j2se/1.4.2/download.html)
+
+
+## Running
+
+Compile PostCrypt
 
 ```
-Give examples
-
+javac PostCrypt.java
 ```
 
-### Installing
-
-A step by step series of examples that tell you have to get a development env running
-
-Say what the step will be
+Using PostCrypt
 
 ```
-Give the example
-
+java PostCrypt message
 ```
 
-And repeat
-
-```
-until finished
-
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
+<u>**End with an example of getting some data out of the system or using it for a little demo**</u>
 
 ## Built With
 
-- [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-- [Maven](https://maven.apache.org/) - Dependency Management
-- [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+-  [Java Secure Socket Extension (JSSE)](https://docs.oracle.com/javase/8/docs/technotes/guides/security/jsse/JSSERefGuide.html) provides access to Secure Socket Layer (SSL) and Transport Layer Security (TLS) implementations
+-  [Simple Authentication and Security Layer (SASL)](https://docs.oracle.com/javase/8/docs/technotes/guides/security/sasl/sasl-refguide.html) is used for securely exchanging messages between communicating applications
+-  The JCA within the JDK includes packages such as:
+  -  `java.security`
+  -  `javax.crypto`
+  -  `javax.crypto.spec`
+  -  `javax.crypto.interfaces`
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
+
 
 ## Authors
 
-- **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](https://gist.github.com/PurpleBooth/LICENSE.md) file for details
+- **Rickus Senekal** - *Developer*/Writer - [rsenekal](https://github.com/rsenekal)
+- **Arshi Annafi** - *Developer/Writer* - [arshiannafi](https://github.com/arshiannafi)
+- **Ronnie Gupta** - *Developer/Writer* - [TBA](https://github.com/TBA)
 
 ## Acknowledgments
 
-- Hat tip to anyone who's code was used
-- Inspiration
-- etc
-
-A message digest is a function that ensures the integrity of a message. Message digests take a message as input and generate a block of bits, usually several hundred bits long, that represents the fingerprint of the message. A small change in the message (say, by an interloper or eavesdropper) creates a noticeable change in the fingerprint.
+- IBM's developerWorks Crypto Tutorials
+  - https://www.ibm.com/developerworks/java/tutorials/j-sec1/j-sec1.html
+- Java Cryptography Architecture (JCA) Reference Guide
+  - https://docs.oracle.com/javase/8/docs/technotes/guides/security/crypto/CryptoSpec.html
