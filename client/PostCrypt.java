@@ -14,11 +14,6 @@ public class PostCrypt {
   }
 
 
-  /* A message digest is a function that ensures the integrity of a message.
-  Message digests take a message as input and generate a block of bits,
-  usually several hundred bits long, that represents the fingerprint of the message.
-  A small change in the message (say, by an interloper or eavesdropper) creates
-
   /* Generate a Message Digest */
   public static void messageDigest(String[] args) throws Exception{
 
