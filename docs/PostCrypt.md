@@ -45,7 +45,7 @@ java PostCrypt message
 
 - **Rickus Senekal** - *Developer*/Writer - [rsenekal](https://github.com/rsenekal)
 - **Arshi Annafi** - *Developer/Writer* - [arshiannafi](https://github.com/arshiannafi)
-- **Ronnie Gupta** - *Developer/Writer* - [TBA](https://github.com/TBA)
+- **Ronnie Gupta** - *Developer/Writer* - [raunaqg](https://github.com/raunaqg)
 
 ## Acknowledgments
 
