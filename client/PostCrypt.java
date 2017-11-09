@@ -149,7 +149,7 @@ public class PostCrypt {
 
     KeyPair key = keyGen.generateKeyPair();
     System.out.println( "Finish generating RSA key" );
-    //
+    
     // get a signature object using the MD5 and RSA combo
     // and sign the plaintext with the private key,
     // listing the provider along the way
@@ -161,7 +161,7 @@ public class PostCrypt {
     System.out.println( sig.getProvider().getInfo() );
     System.out.println( "\nSignature:" );
     System.out.println( new String(signature, "UTF8") );
-    //
+    
     // verify the signature with the public key
     System.out.println( "\nStart signature verification" );
     sig.initVerify(key.getPublic());
