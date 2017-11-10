@@ -1,12 +1,17 @@
 
 import common.IncomingMessageListener;
+import common.PostCryptAPI;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.security.Key;
+import java.security.KeyPair;
+import java.util.Arrays;
 import java.util.Scanner;
+import javax.crypto.Cipher;
 
 /**
  *
@@ -84,6 +89,13 @@ public class Server {
 
     public static void startServer() {
 
+        Key key = null;
+        if (enableConfidentiality) {
+            key = PostCryptAPI.makeDESKey();
+            PostCryptAPI.saveKey(key, "key");
+        }
+
+        // TODO if server key pair DNE, make them
         System.out.println(SYSTEM + "< Server listening on port: " + PORT + " >");
         System.out.println(SYSTEM + "< Waiting for client >");
 
@@ -107,7 +119,7 @@ public class Server {
             String userInput;
 
             // Start thread to listen to incomming messages
-            IncomingMessageListener incommingMessageListener = new IncomingMessageListener("Client", inStream);
+            IncomingMessageListener incommingMessageListener = new IncomingMessageListener("Client", inStream, enableConfidentiality, key);
             Thread imlThread = new Thread(incommingMessageListener);
             imlThread.start();
 
@@ -119,7 +131,11 @@ public class Server {
 
                 // Send message
                 System.out.println("Server: " + userInput);
-                outStream.println(userInput);
+                if (enableConfidentiality) {
+                    outStream.println(PostCryptAPI.encrypt_DES_EBC_PKCS5(Cipher.ENCRYPT_MODE, userInput.getBytes(), key));
+                } else {
+                    outStream.println(userInput);
+                }
 
             }
 

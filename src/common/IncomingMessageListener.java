@@ -1,6 +1,10 @@
 package common;
 
+import common.PostCryptAPI;
+
 import java.io.BufferedReader;
+import java.security.Key;
+import javax.crypto.Cipher;
 
 /**
  *
@@ -17,6 +21,8 @@ public class IncomingMessageListener implements Runnable {
      */
     private String sender;
     private BufferedReader inStream;
+    private boolean enableConfidentiality = false;
+    private Key key;
 
     /**
      * Constructor
@@ -24,18 +30,25 @@ public class IncomingMessageListener implements Runnable {
      * @param sender - Name of the message sender. E.g. Server or Client
      * @param inStream - valid BufferedReader to read from
      */
-    public IncomingMessageListener(String sender, BufferedReader inStream) {
+    public IncomingMessageListener(String sender, BufferedReader inStream, boolean enableConfidentiality, Key key) {
         this.alive = true;
         this.sender = sender;
         this.inStream = inStream;
+        this.enableConfidentiality = enableConfidentiality;
+        this.key = key;
     }
-    
+
     @Override
     public void run() {
         String receivedMessage;
         try {
             while (this.alive && (receivedMessage = inStream.readLine()) != null) {
-                System.out.println(sender + ": " + receivedMessage);
+                if (enableConfidentiality) {
+                    byte[] dec = PostCryptAPI.encrypt_DES_EBC_PKCS5(Cipher.DECRYPT_MODE, receivedMessage.getBytes(), key);
+                    System.out.println(sender + ": " + new String(dec));
+                } else {
+                    System.out.println(sender + ": " + receivedMessage);
+                }
             }
         } catch (Exception e) {
             System.out.println(e);

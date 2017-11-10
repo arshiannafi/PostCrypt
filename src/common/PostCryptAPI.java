@@ -6,7 +6,8 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.security.Key;
-import java.security.NoSuchAlgorithmException;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 
@@ -22,6 +23,18 @@ public class PostCryptAPI {
             System.out.println(e);
         }
         return key;
+    }
+
+    public static KeyPair getKeyPair() {
+        KeyPair keyPair = null;
+        try {
+            KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
+            keyGen.initialize(1024);
+            KeyPair keyPairy = keyGen.generateKeyPair();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return keyPair;
     }
 
     public static void saveKey(Key key, String filename) {
@@ -59,6 +72,7 @@ public class PostCryptAPI {
         byte[] cipherText = null;
         try {
             Cipher cipher = Cipher.getInstance("DES/ECB/PKCS5Padding");
+//            Cipher cipher = Cipher.getInstance("DES/ECB/NoPadding");
 
             if (mode == Cipher.ENCRYPT_MODE) {
                 cipher.init(Cipher.ENCRYPT_MODE, key);
@@ -68,7 +82,15 @@ public class PostCryptAPI {
 
             cipherText = cipher.doFinal(plainText);
         } catch (Exception e) {
+            System.out.println("\n\n\n");
+            
             System.out.println(e);
+            
+            System.out.println("\n\n\n");
+            
+            e.printStackTrace();
+            
+            System.out.println("\n\n\n");
         }
         return cipherText;
     }
