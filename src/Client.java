@@ -13,6 +13,8 @@ import java.util.Scanner;
  */
 public class Client {
 
+    public static String SYSTEM = "PostCrypt: ";
+    
     public static void main(String[] args) {
         // // Get host name and port from args
         //
@@ -28,14 +30,15 @@ public class Client {
         String hostName = "127.0.0.1";
         int portNumber = 50000;
 
-        System.out.println("[Info] Connecting to: " + hostName + ":" + portNumber);
+        System.out.println(SYSTEM + "< Connecting to: " + hostName + ":" + portNumber + " >");
 
         try {
 
             // Socket
             Socket mySocket = new Socket(hostName, portNumber);
 
-            System.out.println("[Info] Connection established");
+            System.out.println(SYSTEM + "< Connection established >");
+            System.out.println(SYSTEM + "< Type your message then press enter to send >");
 
             // Streams
             PrintWriter outStream = new PrintWriter(mySocket.getOutputStream(), true);
@@ -58,7 +61,7 @@ public class Client {
                 }
 
                 // Send message
-                System.out.println("[Sent] " + userInput);
+                System.out.println("Client: " + userInput);
                 outStream.println(userInput);
             }
 
@@ -67,7 +70,7 @@ public class Client {
 
         } catch (Exception e) {
             System.err.println(e);
-            System.out.println("[Info] Ensure that the server on " + hostName + " is running on port " + portNumber);
+            System.out.println(SYSTEM + "< Ensure that the server on " + hostName + " is running on port " + portNumber + " >");
         }
 
     }
